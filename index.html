@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black King Automotriz - Datos Bancarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-gold: #d4af37;
+            --brand-black: #080808;
+            --border-gold: rgba(212, 175, 55, 0.4);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #030303;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #e5e7eb;
+        }
+
+        /* Efecto de fondo metalizado cepillado */
+        .card-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-bg::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(45deg, rgba(255,255,255, 0.01) 0px, rgba(255,255,255, 0.01) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+        }
+
+        .black-king-card {
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            width: 100%;
+            max-width: 400px;
+            padding: 3.5rem 2rem;
+            z-index: 10;
+        }
+
+        .brand-name {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-style: italic;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 0px var(--brand-gold);
+        }
+
+        .tagline {
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            color: var(--brand-gold);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .data-row {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #777;
+            font-weight: 600;
+        }
+
+        .value {
+            font-size: 0.85rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--brand-gold);
+            border: 1px solid var(--border-gold);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        .status-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-gold);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="black-king-card card-bg">
+        <div class="relative z-10">
+            <!-- Header sin logos, solo tipografía de marca -->
+            <div class="flex flex-col items-center mb-10 text-center">
+                <h1 class="brand-name text-3xl">BLACK KING</h1>
+                <p class="tagline mt-2">Ingeniería Automotriz Aplicada</p>
+            </div>
+
+            <!-- Datos Bancarios -->
+            <div class="space-y-0">
+                <div class="data-row">
+                    <div class="flex flex-col">
+                        <span class="label">Titular</span>
+                        <span class="value">MATÍAS NICOLÁS REYES ROSALES</span>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="flex flex-col">
+                        <span class="label">RUT</span>
+                        <span class="value">17.990.280-K</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyText('17.990.280-K')">Copiar</button>
+                </div>
+
+                <div class="data-row">
+                    <div class="flex flex-col">
+                        <span class="label">Banco</span>
+                        <span class="value">BANCO BCI</span>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="flex flex-col">
+                        <span class="label">Tipo de Cuenta</span>
+                        <span class="value">CUENTA CORRIENTE</span>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="flex flex-col">
+                        <span class="label">Número</span>
+                        <span class="value">61873527</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyText('61873527')">Copiar</button>
+                </div>
+
+                <div class="data-row border-none">
+                    <div class="flex flex-col">
+                        <span class="label">Email</span>
+                        <span class="value lowercase text-gray-400">matti.reyes@gmail.com</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyText('matti.reyes@gmail.com')">Copiar</button>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-4 border-t border-white/5 text-center">
+                <p class="text-[7px] text-gray-600 uppercase tracking-[0.4em] font-bold">Performance & Engineering</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="status-msg">DATO COPIADO</div>
+
+    <script>
+        function copyText(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
