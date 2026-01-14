@@ -24,7 +24,6 @@
             color: #e5e7eb;
         }
 
-        /* Efecto de fondo metalizado cepillado */
         .card-bg {
             background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
             position: relative;
@@ -45,7 +44,7 @@
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(212, 175, 55, 0.05);
             width: 100%;
             max-width: 400px;
-            padding: 3.5rem 2rem;
+            padding: 3rem 2rem;
             z-index: 10;
         }
 
@@ -67,7 +66,7 @@
 
         .data-row {
             border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            padding: 16px 0;
+            padding: 14px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,6 +103,24 @@
             color: #000;
         }
 
+        .all-copy-btn {
+            width: 100%;
+            background: var(--brand-gold);
+            color: #000;
+            padding: 12px;
+            margin-top: 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .all-copy-btn:active {
+            transform: scale(0.98);
+        }
+
         .status-msg {
             position: fixed;
             bottom: 30px;
@@ -117,6 +134,7 @@
             font-weight: 700;
             display: none;
             z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -124,19 +142,18 @@
 
     <div class="black-king-card card-bg">
         <div class="relative z-10">
-            <!-- Header sin logos, solo tipografía de marca -->
             <div class="flex flex-col items-center mb-10 text-center">
                 <h1 class="brand-name text-3xl">BLACK KING</h1>
                 <p class="tagline mt-2">Ingeniería Automotriz Aplicada</p>
             </div>
 
-            <!-- Datos Bancarios -->
             <div class="space-y-0">
                 <div class="data-row">
                     <div class="flex flex-col">
                         <span class="label">Titular</span>
                         <span class="value">MATÍAS NICOLÁS REYES ROSALES</span>
                     </div>
+                    <button class="copy-btn" onclick="copyText('MATÍAS NICOLÁS REYES ROSALES')">Copiar</button>
                 </div>
 
                 <div class="data-row">
@@ -178,7 +195,11 @@
                 </div>
             </div>
 
-            <div class="mt-12 pt-4 border-t border-white/5 text-center">
+            <button class="all-copy-btn" onclick="copyAllData()">
+                Copiar todos los datos
+            </button>
+
+            <div class="mt-8 pt-4 border-t border-white/5 text-center">
                 <p class="text-[7px] text-gray-600 uppercase tracking-[0.4em] font-bold">Performance & Engineering</p>
             </div>
         </div>
@@ -187,6 +208,15 @@
     <div id="toast" class="status-msg">DATO COPIADO</div>
 
     <script>
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 1500);
+        }
+
         function copyText(text) {
             const el = document.createElement('textarea');
             el.value = text;
@@ -194,12 +224,13 @@
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 1200);
+            showToast('COPIADO AL PORTAPAPELES');
+        }
+
+        function copyAllData() {
+            const allData = `Nombre: MATÍAS NICOLÁS REYES ROSALES\nRUT: 17.990.280-K\nBanco: BANCO BCI\nTipo: Cuenta Corriente\nN° Cuenta: 61873527\nEmail: matti.reyes@gmail.com`;
+            copyText(allData);
+            showToast('TODOS LOS DATOS COPIADOS');
         }
     </script>
 </body>
